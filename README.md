@@ -1,4 +1,4 @@
-# Apartment
+# Tenant Manager Web Application
 Created a ASP.NET MVC Web Application for an Apartment Business. This web application allows you to create, update , edit and delete Tenant Information and Tenant Transactions.
 
 **Requirements:**
