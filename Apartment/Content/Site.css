@@ -1,0 +1,528 @@
+﻿
+html {
+height: 100%;
+}
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+
+
+#main {
+  overflow:auto;
+  padding-bottom:150px; /* this needs to be bigger than footer height*/
+}
+
+.footer {
+  position: relative;
+  margin-top: -150px; /* negative value of footer height */
+  height: auto;
+  clear:both;
+  padding-top:20px;
+} 
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.padd-top-20 {
+    padding-top: 20px;
+
+}
+
+.padd-top-100 {
+    padding-top: 100px;
+
+}
+
+.padd-bottom-20 {
+padding-bottom: 20px;
+}
+
+
+.center-align {
+    text-align: center;
+}
+
+.no-border {
+border:none;
+
+}
+
+.control-label {
+    color: black;
+}
+
+
+.vr {
+border-left: 1px solid white;
+height: 500px ;
+padding-left: 10px;
+
+}
+
+#editBillDatePicker .ui-datepicker .ui-datepicker-prev span,#editBillDatePicker .ui-datepicker .ui-datepicker-next span {
+    color: transparent;
+}
+#ui-datepicker-div button.ui-datepicker-current {display: none;}
+
+body {
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    background:    
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),url('images/pexels-graphicgumcom-1115804.jpg') no-repeat center center fixed;
+    background-size: cover;
+   
+    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+}
+
+.main-section {
+    margin: 0 auto;
+    margin-top: 130px;
+    padding: 0;
+}
+
+.pointerCursor {
+cursor:pointer!important;
+
+}
+
+.modal-content {
+    background-color: #3b4652;
+    opacity: .95;
+    padding: 0 18px;
+    box-shadow: 0px 0px 3px #848484;
+}
+
+.modal-contentAddedit {
+    background-color: #3b4652;
+    opacity: .95;
+    padding: 0 18px;
+    box-shadow: 0px 0px 3px #848484;
+}
+
+.text-danger {
+   margin: 0 auto;
+
+    }
+
+
+.user-img {
+margin-top: -50px;
+margin-bottom: 35px;
+
+}
+
+.user-img img {
+    height: 100px;
+    width: 100px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: none;
+
+}
+
+.labelTexts {
+    color: white;
+
+}
+
+.ui-datepicker {
+   background: #333;
+   border: 1px solid #555;
+   color: #EEE;
+}
+
+.form-groupLogin{
+    margin-bottom: 15px;
+}
+
+.form-groupLogin input{
+    height: 42px;
+    border-radius: 5px;
+    border: 0;
+    font-size: 18px;
+    padding-left: 25px;
+    margin: 0 auto;
+   
+}
+
+.form-groupLogin::before{
+    font-family: 'FontAwesome';
+    content: "\f007";
+    position: relative;
+    top: 35px;
+    font-size: 20px;
+    color: #555E60;
+    right: 127px;
+    text-shadow: none;
+    
+}
+a {
+    text-shadow: none;
+}
+
+.form-groupLogin:last-of-type::before {
+    content: "\f023";
+    text-shadow: none;
+    
+}
+
+button{
+    width: 40%;
+    margin: 5px 0 25px;
+}
+
+.btn {
+    background-color: #181413;
+    color: #fff;
+    font-size: 19px;
+    padding: 7px 14px;
+    border-radius: 5px;
+    border-bottom: 4px solid #2C2827;
+}
+
+
+.btn:hover, .btn:focus{
+    background-color: #2C2827!important;
+    border-bottom: 4px solid #2C2827;
+    color: #fff;
+}
+.svg-inline--fa{
+    font-size: 20px;
+    margin-right: 7px;
+    color: white;
+}
+
+.remember-me {
+    padding: 5px 0 25px;
+    color: #c2fbfe;
+}
+
+.wide {
+    width: 800px;
+}
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    background-color: #3b4652;
+    color: #FFF;
+    padding: 1% 0;
+    font-size: 1.2em;
+    border: 0;
+    text-shadow: none!important;
+    opacity: 0.85;
+
+}
+
+.navbar-brand {
+    float: left;
+    min-height: 55px;
+    padding: 0 15px 15px;
+}
+
+.navbar-brand img {
+     padding: 0 15px 15px;
+    max-height: 55px; 
+    min-height: 55px;
+   
+}
+
+.table {
+    border-color: black;
+    
+
+}
+
+
+.navbar-inverse .navbar-nav .active a, .navbar-inverse .navbar-nav .active a:focus, .navbar-inverse .navbar-nav .active a:hover {
+    color: #fff;
+    background-color: #3b4652;
+}
+
+.navbar-inverse .navbar-nav li a {
+    color: #D5D5D5;
+}
+
+.navbar-toggle {
+   width: 50px;
+   background-color: #3b4652!important;
+}
+
+.carousel-caption {
+    top: 69%;
+    transform: translateY(-50%);
+    text-transform: uppercase;
+    
+}
+
+.carousel-caption .btn{
+    font-size: 18px;
+    color: white;
+    padding: 12px 22px;
+    width:auto!important;
+    border: 1px solid;
+  
+}
+
+.carousel-caption .btn:hover, .carousel-caption .btn:focus{
+
+}
+
+#icon{
+    max-width:200px;
+    margin: 1% auto;
+}
+
+.container {
+     margin: 3% auto;
+}
+
+footer {
+    
+    background-color: #3b4652;
+    padding: 1%;
+    color: #FFF;
+    text-shadow: none;
+    opacity: 0.85;
+}
+.socialicons {
+    padding: 20px;
+    font-size: 25px;
+    color: #FFF;
+}
+
+.socialicons:hover {
+    color: #D5D5D5;
+    text-decoration: none;
+
+}
+
+.carousel{
+    border: 4px solid;
+    border-radius: 5px;
+    border-color: #fff;
+
+}
+.carousel .carousel-inner img{
+    margin: 0 auto;
+    max-height: 500px;
+    width: 100%;
+    border-radius: 5px;
+
+
+}
+
+#footerlogo {
+    max-height: 200px;
+    max-width: 200px;
+    margin-top: 25px;
+
+}
+
+.pic-border {
+    border: 2px solid;
+    border-radius: 5px;
+    
+}
+
+
+/*Product Grid*/
+.product-grid{
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+}
+
+.product-grid:hover{
+    box-shadow: 0 4px 8px 0 white 0 6px 20px 0 white;
+}
+
+.sampleimage {
+    position: relative;
+    
+}
+
+.prod-buy {
+     font-size: 18px!important;
+    color: white!important;
+    padding: 12px 22px!important;
+    width:100%!important;
+    border: 1px solid!important;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    transition: .5s ease;
+    background-color: rgba(67,68,68,0.7);
+    opacity: 0;
+}
+.overlay:hover {
+
+    opacity: 1;
+}
+
+.detail {
+    color: #fff;
+    font-size: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(35%,420%);
+}
+
+
+@media (min-width: 768px) { 
+    .fix-margin {
+    margin: auto 190px;
+
+}
+
+}
+
+
+.modal-dialog {
+   opacity: .9;
+
+}
+
+/*For Desktop - Login Modal*/
+@media  (min-width: 768px) {
+
+.modal-content {
+        height: 390px;
+    }
+
+}
+
+/*For mobile carousel*/
+@media(max-width: 600px) {
+    .carousel-caption{
+        display: none;
+    }
+    #icon {
+        max-width: 150px;
+    }
+    h2 {
+        font-size: 1.7em;
+    }
+}
+
+
+@media(max-width: 900px) {
+    .fa {
+        font-size: 20px;
+        padding-left: 10px;
+        text-shadow: none;
+    }
+}
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,900);
+h1, h2 {
+     font-family: "Roboto", sans-serif !important;
+     color: white!important;
+     opacity: .85;
+
+}
+
+.paraContent {
+         font-family: "Roboto", sans-serif !important;
+     color: whitesmoke!important;
+     opacity: .7;
+}
+
+
+
+.jumbotron {
+      background:none!important;
+
+}
+
+.specialbtn {
+    opacity: .8;
+}
+
+#mytable, #userTable {
+    opacity: .8;
+
+}
+ .table-header {
+    background-color: #2C2827!important;
+    font-size: 14px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border: none;
+  }
+
+  tr.even {
+    background-color:white!important;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  }
+
+#mytable_length, #mytable_filter,#mytable_info,#mytable_previous,#mytable_next {
+    color: white!important;
+    opacity: .8;
+}
+
+#mytable_length select,#mytable_filter input  {
+    color: black;
+    font-size: smaller;
+    opacity: .7;
+}
+
+#userTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+hr, .imageLogin {
+ opacity: .7!important;
+}
+
+.socialsSize {
+   font-size: 2em!important;
+}
+
+.padd-left-95 {
+    padding-top:3px;
+   padding-left: 35px!important;
+}
+
+.padd-left-65 {
+   padding-left: 61px!important;
+}
+
+
+
+
+

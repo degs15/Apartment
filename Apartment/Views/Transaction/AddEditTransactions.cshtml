@@ -1,0 +1,229 @@
+﻿@model Apartment.Models.TenantViewModel
+
+@{
+    ViewBag.Title = "Add or Edit Transaction";
+}
+
+@if (ViewBag.ListType == "specific")
+{
+         <h2>Transactions of @Html.DisplayFor(model => model.TenantName)</h2>
+        <div>
+            <hr />
+        </div>
+
+        <p>
+            <a class="modalButton btn btn-default specialbtn" style="cursor:pointer" >Add a Transaction</a>
+
+        </p>
+
+        <!--Start of Add Modal div-->
+        <div class="modal fade" id="myModalAddTransaction" role="dialog" data-url="@Url.Action("AddTransactionForm", "Transaction", new { id = Model.TenantId })"></div>
+        <!--End of Add Modal div-->
+
+}
+else
+{
+    <h2>List of All Transactions</h2>
+
+}
+
+<!--Start of Edit Modal div-->
+<div class="modal fade" id="myModalEditTransaction" role="dialog" data-url="@Url.Action("EditTransactionForm", "Transaction")"></div>
+<!--End of Edit Modal div-->
+
+
+<div>
+    <table class="table table-striped table-bordered" id="mytable">
+
+        <thead>
+            <tr class="table-header">
+                <th>Receipt Number</th>
+                <th>Date Posted</th>
+                <th>Bill Period</th>
+                <th>Received By</th>
+                <th>Payment Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<p>
+    <hr />
+    @Html.ActionLink("Go to Tenant List", "Index",new { Controller="Tenant"}, new { @class = "btn btn-default specialbtn" })
+</p>
+
+@section scripts{
+
+    <script type="text/javascript" charset="utf8">
+
+        //Start of Script for AddTenant Modal submit
+        function onChangeSuccessAddTransaction(data) {
+
+
+            if (data.status === "success") {
+
+                $("#myModalAddTransaction").modal('hide');
+                //$("#message-area").html(data.view);
+                location.reload();
+            }
+            $.each(data.formErrors, function () {
+                $("[data-valmsg-for=" + this.key + "]").html(this.errors.join());
+            });
+        }   //End of Script for AddTenant Modal submit
+
+        //Start of Script for EditTenant Modal submit
+        function onChangeSuccessEditTransaction(data) {
+
+            if (data.status === "success") {
+
+                $("#myModalAddTransaction").modal('hide');
+                //$("#message-area").html(data.view);
+                location.reload();
+            }
+            $.each(data.formErrors, function () {
+                $("[data-valmsg-for=" + this.key + "]").html(this.errors.join());
+            });
+        }   //End of Script for EditTenant Modal submit
+
+
+
+        $(document).ready(function () {
+            var tenantId = "";
+            var listType = '@ViewBag.ListType'
+            var ajaxUrl = "";
+
+            if(listType == "specific")
+            {
+                ajaxUrl = "/Tenant/GetTransactionForTenantServerSide";
+                tenantId = @ViewBag.TenantId;
+            }
+            else
+            {
+                ajaxUrl = "/Tenant/GetAllTransactionServerSide";
+            }
+
+            //Start of DataTable
+            $("#mytable").DataTable({
+                "ajax": {
+                    "url": ajaxUrl,
+                    "type": "GET",
+                    "datatype": "json",
+                    "data": {
+                        "id": tenantId
+                    }
+                },
+                "columns": [
+                { 'data': 'ReceiptNumber', 'name': 'ReceiptNumber' },
+                { 'data': 'DatePosted', 'name': 'DatePosted' },
+                { 'data': 'BillPeriod', 'name': 'BillPeriod' },
+                { 'data': 'ReceivedBy', 'name': 'ReceivedBy' },
+                { 'data': 'PaymentAmount', 'name': 'PaymentAmount' },
+                { 'data': 'TransactionId', 'name': 'Action' }
+                ],
+                "serverSide": "true",
+                "order": [0, "asc"],
+                'columnDefs': [
+                 {
+                     'render': function (Action, type, full, meta) {
+                         //Get TransactionId from table row
+                         var transactionId = full.TransactionId;
+
+                         //Append transaction ID to edit URL (get url from data-url of modal)
+                         var urlEdit = $('#myModalEditTransaction').data('url');
+                         var urlparamEdit = urlEdit + '?id=' + transactionId;
+                         var urlparamEditFull =  '<a class= "modalButtonEdit pointerCursor" data-url='+urlparamEdit+' data-target="#myModalEditTransaction" data-toggle="modal">Edit</a>';
+
+                         //Construct Delete Hyperlink
+                         var urlDelete = '@Url.Action("DeleteTransaction", "Transaction")';
+                         var urlparamDelete = urlDelete + '?id='+ Action;
+                         var urlDeleteListType = urlparamDelete + '&type='+listType;
+                         
+                         var urlparamDeleteFull = ' | <a  href="' + urlDeleteListType + '">Delete</a>';
+
+                         var renderHyperLink = urlparamEditFull + urlparamDeleteFull;
+
+                         return renderHyperLink;
+                     },
+                     'targets': -1, /* column index */ 'orderable': false, /* true or false */
+                 }
+                ]
+            });  //End of DataTable
+
+
+            //Start of Modal Script - Add
+            $('.modalButton').click(function () {
+
+                var url = $('#myModalAddTransaction').data('url');
+                $.get(url, function (data) {
+                    $('#myModalAddTransaction').html(data);
+                    $('#myModalAddTransaction').modal('show');
+                    $('#addDatePicker').datepicker();
+                    $("#addBillDatePicker").datepicker({
+                        dateFormat: 'MM yy',
+                        changeMonth: true,
+                        changeYear: true,
+                        showButtonPanel: true,
+
+                        onClose: function(dateText, inst) {
+                            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                            $(this).val($.datepicker.formatDate('MM yy', new Date(year, month, 1)));
+                        }
+                    });
+                    $("#addBillDatePicker").focus(function () {
+                        $(".ui-datepicker-calendar").hide();
+                        $('.ui-datepicker-next').hide();
+                        $('.ui-datepicker-prev').hide();
+                        $("#ui-datepicker-div").position({
+                            my: "center top",
+                            at: "center bottom",
+                            of: $(this)
+                        });
+                    });
+                });
+
+            });//End of Modal script - Add
+
+
+            //Start of Modal Script - Edit
+            $('#myModalEditTransaction').on('show.bs.modal', function (event) {
+                var link = $(event.relatedTarget) // link that triggered the modal
+                var url = link.data('url') // Extract info from data-* attributes
+                var modal = $(this)
+
+                $.get(url, function (data) {
+                    modal.html(data);
+                    $('#editDatePicker').datepicker();
+                    $("#editBillDatePicker").datepicker({
+                        dateFormat: 'MM yy',
+                        changeMonth: true,
+                        changeYear: true,
+                        showButtonPanel: true,
+
+                        onClose: function(dateText, inst) {
+                            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                            $(this).val($.datepicker.formatDate('MM yy', new Date(year, month, 1)));
+                        }
+                    });
+                    $("#editBillDatePicker").focus(function () {
+                        $(".ui-datepicker-calendar").hide();
+                        $('.ui-datepicker-next').hide();
+                        $('.ui-datepicker-prev').hide();
+                        $("#ui-datepicker-div").position({
+                            my: "center top",
+                            at: "center bottom",
+                            of: $(this)
+                        });
+                    });
+                });
+
+            }); //End of Modal Script - Edit
+
+
+        });//End of document.ready
+
+    </script>
+
+}

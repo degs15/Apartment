@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Apartment.Models.UserModel>
+
+@{
+    var user = User.Identity;
+    var currentUserName = user.Name;
+    ViewBag.Title = "List of Users";
+
+
+}
+
+<h2>List of Users</h2>
+
+<p>
+    @Html.ActionLink("Add User", "Register",new { Controller= "Account"}, new { @class = "btn btn-default specialbtn" })
+</p>
+<table class="table table-striped table-bordered" id="userTable">
+    <tr >
+        <th class="table-header">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th class="table-header">
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th class="table-header"></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Change Password", "changePassword", new { id = item.Id }) 
+            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+            
+               
+                
+                @if (!currentUserName.Equals(item.Name))
+                {
+                    <span>|</span> @Html.ActionLink("Delete", "deleteUser", new { id = item.Id });
+                }
+            
+                </td>
+        
+            </tr>
+}
+
+</table>

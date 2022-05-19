@@ -1,0 +1,45 @@
+﻿@using Apartment.Models;
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+
+}
+<div class="fix-margin">
+    <div class="modal-dialog text-center row ">
+        <div class="col-md-12 col-sm-8 col-xs-12 main-section">
+            <div class="modal-content">
+                <div class="col-xs-12 user-img">
+                    <img src="~/Content/images/login-icon-3048.png" class="imageLogin" />
+                </div>
+                <section id="loginForm">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <form class="col-xs-12">
+                            <div class="form-groupLogin  ">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control ", @placeholder = "Enter Username" })
+                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-groupLogin">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter Password" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                            <button type="submit" class="btn"><i class="fa fa-sign-in"></i>Login</button>
+                        </form>
+
+                    }
+                    @*<div class="col-md-12 remember-me">
+                        <a href="#">Forgot Password?</a>
+                    </div>*@
+                </section>
+
+            </div><!-- End of Modal Content-->
+
+        </div>
+
+
+    </div>
+</div>
+
+

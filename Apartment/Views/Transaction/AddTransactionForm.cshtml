@@ -1,0 +1,72 @@
+﻿@model Apartment.Models.TransactionViewModel
+
+@using (Html.BeginForm(Ajax.BeginForm("AddTransactionForm", new AjaxOptions { OnSuccess = "onChangeSuccessAddTransaction" })))
+{
+    @Html.AntiForgeryToken()
+    
+     
+
+    <div class="form-horizontal modal-dialog">
+        <div class="modal-contentAddedit">
+            <div class="modal-header">
+                <h4 class="labelTexts">Add a Transaction</h4>
+            </div>
+            <div class="modal-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.TenantId)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReceiptNumber, htmlAttributes: new { @class = "control-label col-md-4 labelTexts" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.ReceiptNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ReceiptNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DatePosted, htmlAttributes: new { @class = "control-label col-md-4 labelTexts" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.DatePosted, new { htmlAttributes = new { @class = "form-control date-pickerAdd pointerCursor", autocomplete = "off", id = "addDatePicker", @readonly="readonly" } })
+                        @Html.ValidationMessageFor(model => model.DatePosted, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.BillPeriod, htmlAttributes: new { @class = "control-label col-md-4 labelTexts" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.BillPeriod, new { htmlAttributes = new { @class = "form-control pointerCursor", autocomplete = "off", id = "addBillDatePicker", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.BillPeriod, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReceivedBy, htmlAttributes: new { @class = "control-label col-md-4 labelTexts" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.ReceivedBy, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ReceivedBy, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PaymentAmount, htmlAttributes: new { @class = "control-label col-md-4 labelTexts" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.PaymentAmount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PaymentAmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Add Transaction" class="btn btn-default btnAddedit" />
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" />
+                    </div>
+                </div>
+                </div>
+            </div>
+      </div>
+}
+
+
+

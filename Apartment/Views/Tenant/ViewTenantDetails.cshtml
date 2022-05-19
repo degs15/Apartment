@@ -1,0 +1,102 @@
+﻿@model Apartment.Models.TenantViewModel
+
+@{
+    ViewBag.Title = "Tenant Details";
+}
+
+<h2>Tenant Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal paraContent">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenantName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenantName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenantAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenantAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenantPhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenantPhoneNumber)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <hr />
+    <h2>Transactions</h2>
+    
+    <table class="table table-striped table-bordered" id="mytable">
+
+        <thead>
+            <tr class="table-header">
+                <th>Receipt Number</th>
+                <th>Date Posted</th>
+                <th>Bill Period</th>
+                <th>Received By</th>
+                <th>Payment Amount</th>
+              
+            </tr>
+        </thead>
+
+
+    </table>
+
+</div>
+<hr />
+<p>
+    @Html.ActionLink("Back to Tenant List", "Index",new { Controller="Tenant"},new { @class= "btn btn-default specialbtn" })
+</p>
+@section scripts{
+    
+    <script type="text/javascript" charset="utf8">
+        $(document).ready(function () {
+            var tenantId = @Model.TenantId;
+      
+            //Start of DataTable
+            $("#mytable").DataTable({
+                "ajax": {
+                    "url": "/Tenant/GetTransactionForTenantServerSide",
+                    "type": "GET",
+                    "datatype": "json",
+                    "data": {
+                        "id": tenantId
+                    }
+                },
+                "columns": [
+                { 'data': 'ReceiptNumber', 'name': 'ReceiptNumber' },
+                { 'data': 'DatePosted', 'name': 'DatePosted' },
+                { 'data': 'BillPeriod', 'name': 'BillPeriod' },
+                { 'data': 'ReceivedBy', 'name': 'ReceivedBy' },
+                { 'data': 'PaymentAmount', 'name': 'PaymentAmount' }
+              
+                ],
+                "serverSide": "true",
+                "order": [0, "asc"]
+ 
+            });  //End of DataTable
+
+
+
+
+        });
+
+
+
+
+     </script>
+
+    }

@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div class="jumbotron">
+    <h1>Welcome @User.Identity.Name!</h1>
+    <p class="paraContent">This Web application is used for Managing Tenant Details and Tenant Transactions.</p>
+  
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Tenant Management</h2>
+        <p class="paraContent">
+            By using this application you can Add, Edit or Delete Tenants. You can also Add, Edit or Delete Transaction
+            per tenant. Kindly ensure to populate the forms with correct details. You can search Tenants by Name or Address
+            using the searchbar.
+        </p>
+        <p>@Html.ActionLink("View Tenants ", "Index", new { controller = "Tenant"},new { @class = "btn btn-default specialbtn" })</p>
+    </div>
+    <div class="col-md-6">
+            <h2>Transaction Management</h2>
+            <p class="paraContent">
+                Use the Transactions tab or page to view all Transaction for all Tenants. You can use the button below or navigate
+                to the Transactions tab on the upper right corner to view the page. You can use this page to search Transactions 
+                using the Receipt Number or Received By columns.
+            </p>
+            <p>@Html.ActionLink("View Transactions ", "Index", new { controller = "Transaction" }, new { @class = "btn btn-default specialbtn" })</p>
+    </div>
+
+</div>

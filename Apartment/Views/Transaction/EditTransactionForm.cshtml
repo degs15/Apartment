@@ -1,0 +1,80 @@
+﻿@model Apartment.Models.TransactionViewModel
+
+@using (Html.BeginForm(Ajax.BeginForm("EditTransactionForm", new AjaxOptions { OnSuccess = "onChangeSuccessEditTransaction" })))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal modal-dialog">
+        <div class="modal-contentAddedit">
+            <div class="modal-header">
+                <h4 class="labelTexts">Edit Transaction</h4>
+            </div>
+            <div class="modal-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.TenantId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TenantId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TenantId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+                @Html.HiddenFor(model => model.TransactionId)
+                @Html.HiddenFor(model => model.TenantId)
+               
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReceiptNumber, htmlAttributes: new { @class = "control-label col-md-4 labelTexts" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.ReceiptNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ReceiptNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DatePosted, htmlAttributes: new { @class = "control-label col-md-4 labelTexts" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.DatePosted, new { htmlAttributes = new { @class = "form-control date-picker pointerCursor", autocomplete = "off", id="editDatePicker", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.DatePosted, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.BillPeriod, htmlAttributes: new { @class = "control-label col-md-4 labelTexts" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.BillPeriod, new { htmlAttributes = new { @class = "form-control pointerCursor", autocomplete = "off", id = "editBillDatePicker", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.BillPeriod, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReceivedBy, htmlAttributes: new { @class = "control-label col-md-4 labelTexts" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.ReceivedBy, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ReceivedBy, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PaymentAmount, htmlAttributes: new { @class = "control-label col-md-4 labelTexts" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.PaymentAmount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PaymentAmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Update" class="btn btn-default" />
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+   @*<div>@Html.ActionLink("Back to List", "Index")</div>*@ 
+
