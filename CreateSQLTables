@@ -1,0 +1,33 @@
+    IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'ApartmentDB')
+  BEGIN
+    CREATE DATABASE [ApartmentDB]
+
+
+    END
+    GO
+       USE [ApartmentDB]
+    GO
+--You need to check if the table exists
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Tenants' and xtype='U')
+BEGIN
+    CREATE TABLE Tenants (
+        TenantId INT PRIMARY KEY IDENTITY (1, 1),
+        TenantName VARCHAR(200),
+		TenantAddress VARCHAR(200),
+		TenantPhoneNumber numeric,
+		Balance numeric,
+    )
+END
+
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Transaction' and xtype='U')
+BEGIN
+    CREATE TABLE [dbo].[Transaction] (
+        TransactionId INT PRIMARY KEY IDENTITY (1, 1),
+		TenantId INT FOREIGN KEY REFERENCES Tenants(TenantId),
+        ReceiptNumber numeric,
+		DatePosted varchar(200),
+		BillPeriod varchar(200),
+		ReceivedBy varchar(200),
+		PaymentAmount varchar(200)
+    )
+END
